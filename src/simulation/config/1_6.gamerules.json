@@ -9,5 +9,54 @@
     "sellMultiplier": 0.7,
     "availableBloons": [],
     "availableTowers": [],
-    "rounds": []
+    "rounds": [
+        {
+            "roundNumber": 0,
+            "length": 5
+        },
+        {
+            "roundNumber": 1,
+            "length": 20
+        },
+        {
+            "roundNumber": 2,
+            "length": 20
+        },
+        {
+            "roundNumber": 3,
+            "length": 20
+        },
+        {
+            "roundNumber": 4,
+            "length": 20
+        },
+        {
+            "roundNumber": 5,
+            "length": 20
+        },
+        {
+            "roundNumber": 6,
+            "length": 20
+        },
+        {
+            "roundNumber": 7,
+            "length": 20
+        },
+        {
+            "roundNumber": 8,
+            "length": 20
+        },
+        {
+            "roundNumber": 9,
+            "length": 20
+        },
+        {
+            "roundNumber": 10,
+            "length": 20
+        },
+        {
+            "roundNumber": 11,
+            "length": 20
+        }
+    ]
 }
