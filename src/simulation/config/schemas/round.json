@@ -5,7 +5,10 @@
             "type": "integer"
         },
         "length": {
-            "type": "integer"
+            "type": "number"
+        },
+        "stallAmount": {
+            "type": "number"
         }
     },
     "required": [
