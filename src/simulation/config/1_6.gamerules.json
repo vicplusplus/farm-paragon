@@ -1,1 +1,13 @@
-{}
+{
+    "$schema": "./schemas/gamerules.json",
+    "startingState": {
+        "cash": 650,
+        "eco": 250
+    },
+    "timePerEco": 5,
+    "bloonQueueSize": 6,
+    "sellMultiplier": 0.7,
+    "availableBloons": [],
+    "availableTowers": [],
+    "rounds": []
+}

@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "properties": {
+        "cash": {
+            "type": "number"
+        },
+        "eco": {
+            "type": "number"
+        },
+        "time": {
+            "type": "number"
+        },
+        "towers": {
+            "type": "array",
+            "items": {
+                "$ref": "./tower.json"
+            }
+        },
+        "bloonQueue": {
+            "type": "array",
+            "items": {
+                "$ref": "./bloon.json"
+            }
+        }
+    },
+    "required": [
+        "cash",
+        "eco"
+    ]
+}

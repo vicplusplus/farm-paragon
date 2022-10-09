@@ -1,5 +1,24 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "type": "object",
-    "properties": {}
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "isHero": {
+            "type": "boolean"
+        },
+        "baseCost": {
+            "type": "number"
+        },
+        "upgradeCosts": {
+            "type": "array",
+            "items": {
+                "type": "array",
+                "items": {
+                    "type": "number"
+                }
+            }
+        }
+    }
 }
