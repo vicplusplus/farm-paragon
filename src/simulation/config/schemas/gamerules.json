@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+        "startingCash": {
+            "type": "number"
+        },
+        "startingEco": {
+            "type": "number"
+        },
+        "timePerEco": {
+            "type": "number"
+        },
+        "bloonQueueSize": {
+            "type": "number"
+        },
+        "availableTowers": {
+            "type": "array",
+            "items": {
+                "$ref": "/tower"
+            }
+        },
+        "availableBloons": {
+            "type": "array",
+            "items": {
+                "$ref": "/bloon"
+            }
+        },
+        "rounds": {
+            "type": "array",
+            "items": {
+                "$ref": "/round"
+            }
+        },
+        "sellMultiplier": {
+            "type": "number"
+        }
+    },
+    "required": [
+        "startingCash",
+        "startingEco",
+        "timePerEco",
+        "bloonQueueSize",
+        "availableTowers",
+        "availableBloons",
+        "rounds"
+    ]
+}

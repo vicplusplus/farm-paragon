@@ -1,31 +1,22 @@
-import { Action } from "./Action";
-import Bloon from "./Bloon";
+import Action from "./actions/Action";
 import GameRules from "./GameRules";
-import Queue from "./Queue";
-import Tower from "./Tower";
+import GameState from "./GameState";
 
-export function* SimulateGame(gameRules: GameRules, actions: Action[]) {
-    let cash = gameRules.startingCash;
-    let eco = gameRules.startingEco;
-    let time = 0;
-    let towers = new Set<Tower>();
-    let bloonQueue = new Queue<Bloon>();
-    actions.sort((a, b) => b.time - a.time);
-    yield new GameState(time, cash, eco, towers, bloonQueue);
-}
+export function SimulateGame(gameRules: GameRules, actions: Action[]): GameState[] {
 
-export class GameState {
-    cash: number;
-    eco: number;
-    time: number;
-    towers: Set<Tower>;
-    bloonQueue: Queue<Bloon>;
+    let state = gameRules.startingState;
+    let states: GameState[] = [state];
 
-    constructor(time: number, cash: number, eco: number, towers: Set<Tower>, bloonQueue: Queue<Bloon>) {
-        this.time = time;
-        this.cash = cash;
-        this.eco = eco;
-        this.towers = towers;
-        this.bloonQueue = bloonQueue;
+    while (actions.length > 0) {
+        let action = actions.pop();
+        if (!action) break;
+        if (action.time > state.time) {
+            state.time = action.time;
+        }
+
+        action.apply(state, gameRules);
+        states.push({ ...state });
     }
+
+    return states;
 }
