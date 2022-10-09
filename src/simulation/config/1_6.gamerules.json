@@ -2,7 +2,9 @@
     "$schema": "./schemas/gamerules.json",
     "startingState": {
         "cash": 650,
-        "eco": 250
+        "eco": 250,
+        "time": 0,
+        "towers": []
     },
     "timePerEco": 5,
     "bloonQueueSize": 6,

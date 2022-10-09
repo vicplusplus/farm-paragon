@@ -1,0 +1,21 @@
+import GameRules from "../GameRules";
+import GameState from "../GameState";
+import Tower from "../Tower";
+import Action from "./Action";
+
+export class BuyTowerAction implements Action {
+    public time: number;
+    public priority: number;
+    public tower: Tower;
+
+    apply(state: GameState, rules: GameRules, actions: Action[]): void {
+        state.towers.push(this.tower);
+        state.cash -= this.tower.baseCost;
+    }
+
+    constructor(time: number, priority: number, tower: Tower) {
+        this.time = time;
+        this.priority = priority;
+        this.tower = tower;
+    }
+}

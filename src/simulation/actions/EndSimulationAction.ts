@@ -2,13 +2,12 @@ import GameRules from "../GameRules";
 import GameState from "../GameState";
 import Action from "./Action";
 
-export default class ApplyEcoAction implements Action {
+export class EndSimulationAction implements Action {
     public time: number;
-    public priority: number = 100;
+    public priority: number = -100;
 
     apply(state: GameState, rules: GameRules, actions: Action[]): void {
-        state.cash += state.eco;
-        actions.push(new ApplyEcoAction(this.time + rules.timePerEco));
+        actions.length = 0;
     }
 
     constructor(time: number) {

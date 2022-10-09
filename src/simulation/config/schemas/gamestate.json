@@ -1,5 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "GameState",
+    "type": "object",
     "properties": {
         "cash": {
             "type": "number"
@@ -25,6 +27,8 @@
     },
     "required": [
         "cash",
-        "eco"
+        "eco",
+        "time",
+        "towers"
     ]
 }

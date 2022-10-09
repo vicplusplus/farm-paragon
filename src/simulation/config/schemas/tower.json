@@ -1,5 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Tower",
     "type": "object",
     "properties": {
         "name": {

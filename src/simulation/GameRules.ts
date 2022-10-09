@@ -7,8 +7,8 @@ export default interface GameRules {
     startingState: GameState;
     timePerEco: number;
     bloonQueueSize: number;
-    availableTowers: Set<Tower>;
-    availableBloons: Set<Bloon>;
+    availableTowers: Tower[];
+    availableBloons: Bloon[];
     rounds: Round[];
     sellMultiplier: number;
 }
