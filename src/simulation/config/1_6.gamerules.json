@@ -1,6 +1,7 @@
 {
     "$schema": "./schemas/gamerules.json",
     "startingState": {
+        "round": 0,
         "cash": 650,
         "eco": 250,
         "time": 0,
