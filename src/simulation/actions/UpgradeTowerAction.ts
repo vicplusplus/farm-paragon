@@ -4,6 +4,7 @@ import Action from "./Action";
 import Tower from "../Tower";
 
 export default class UpgradeTowerAction implements Action {
+    public type: string = "UpgradeTowerAction";
     public time: number;
     public priority: number;
     public tower: Tower;

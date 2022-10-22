@@ -3,6 +3,7 @@ import GameState from "../GameState";
 import Action from "./Action";
 
 export default class ApplyEcoAction implements Action {
+    public type: string = "ApplyEcoAction";
     public time: number;
     public priority: number = 100;
 

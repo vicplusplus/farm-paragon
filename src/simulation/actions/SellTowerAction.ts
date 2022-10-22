@@ -4,11 +4,13 @@ import Tower from "../Tower";
 import Action from "./Action";
 
 export class SellTowerAction implements Action {
+    public type: string = "SellTowerAction";
     public time: number;
     public priority: number;
     public tower: Tower;
 
     apply(state: GameState, rules: GameRules, actions: Action[]): void {
+        state.time = this.time;
         state.cash += this.tower.moneySpent! * rules.sellMultiplier;
         state.towers.splice(state.towers.indexOf(this.tower));
     }

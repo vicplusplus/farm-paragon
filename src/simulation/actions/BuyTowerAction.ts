@@ -4,6 +4,7 @@ import Tower from "../Tower";
 import Action from "./Action";
 
 export class BuyTowerAction implements Action {
+    public type: string = "BuyTowerAction";
     public time: number;
     public priority: number;
     public tower: Tower;
