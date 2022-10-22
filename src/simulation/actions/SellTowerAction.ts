@@ -3,15 +3,14 @@ import GameState from "../GameState";
 import Tower from "../Tower";
 import Action from "./Action";
 
-export class BuyTowerAction implements Action {
+export class SellTowerAction implements Action {
     public time: number;
     public priority: number;
     public tower: Tower;
 
     apply(state: GameState, rules: GameRules, actions: Action[]): void {
-        state.towers.push(this.tower);
-        state.cash -= this.tower.baseCost;
-        this.tower.moneySpent! += this.tower.baseCost;
+        state.cash += this.tower.moneySpent! * rules.sellMultiplier;
+        state.towers.splice(state.towers.indexOf(this.tower));
     }
 
     constructor(time: number, priority: number, tower: Tower) {
@@ -21,6 +20,5 @@ export class BuyTowerAction implements Action {
         // add as many upgrade paths as there are upgradeCost paths
 
         this.tower.upgrades ??= this.tower.upgradeCosts.map(() => 0);
-        this.tower.moneySpent = 0;
     }
 }

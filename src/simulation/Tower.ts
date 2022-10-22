@@ -3,4 +3,6 @@ export default interface Tower {
     isHero: boolean;
     baseCost: number;
     upgradeCosts: number[][];
+    upgrades?: number[];
+    moneySpent?: number;
 }
