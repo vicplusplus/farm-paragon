@@ -11,6 +11,14 @@ export default function App() {
 
     return (
         <div className="App">
+            <header>
+                Farm Paragon
+            </header>
+            <div className="Repository Link">
+                <a href="https://github.com/vicplusplus/farm-paragon" target="_blank" rel="noopener noreferrer">
+                    Contribute to the repo here
+                </a>
+            </div>
             <button onClick={() => { setSimulationResult() }}>Simulate</button>
             <pre>
                 <code>
