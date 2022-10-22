@@ -24,7 +24,6 @@ export function Simulate(
 
     while (actions.length > 0 && state.time < endTime) {
         actions.sort((a, b) => a.time - b.time || b.priority - a.priority);
-        actionsSoFar.push(actions[0]);
 
         // get the next action
         let action: Action | undefined = actions.shift();
