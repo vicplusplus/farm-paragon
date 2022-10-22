@@ -4,8 +4,9 @@ import { EndSimulationAction } from "./actions/EndSimulationAction";
 import GameRules from "./GameRules";
 import GameState from "./GameState";
 
-export default function SimulateGame(gameRules: GameRules, actions: Action[]): GameState[] {
+export default function SimulateGame(gameRules: GameRules, actions: Action[] = []): GameState[] {
 
+    // gameRules is required
     if (!gameRules) return [];
 
     let state: GameState = gameRules.startingState;
@@ -28,7 +29,6 @@ export default function SimulateGame(gameRules: GameRules, actions: Action[]): G
         } while (actions.length > 0 && action.time === actions[0].time);
     }
 
-    console.log("States: ", JSON.stringify(states));
     return states;
 }
 
