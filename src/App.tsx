@@ -15,7 +15,7 @@ export default function App() {
             <header>
                 Farm Paragon
             </header>
-            <div className="RepositoryLink">
+            <div className="repository-link">
                 <a href="https://github.com/vicplusplus/farm-paragon" target="_blank" rel="noopener noreferrer">
                     Contribute to the repo here
                 </a>
