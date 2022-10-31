@@ -2,6 +2,7 @@ import { useReducer } from 'react';
 import { Simulate } from './simulation/Simulation';
 import rulesJSON from "./simulation/config/1_6.gamerules.json";
 import './App.css';
+import 'bulma/css/bulma.css';
 
 export default function App() {
 
@@ -14,14 +15,14 @@ export default function App() {
             <header>
                 Farm Paragon
             </header>
-            <div className="Repository Link">
+            <div className="RepositoryLink">
                 <a href="https://github.com/vicplusplus/farm-paragon" target="_blank" rel="noopener noreferrer">
                     Contribute to the repo here
                 </a>
             </div>
-            <button onClick={() => { setSimulationResult() }}>Simulate</button>
-            <pre>
-                <code>
+            <button className="button is-link" onClick={() => { setSimulationResult() }}>Simulate</button>
+            <pre className="has-background-dark">
+                <code className="has-text-light">
                     {JSON.stringify(simulationResult, null, "\t")}
                 </code>
             </pre>

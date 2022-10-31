@@ -6,7 +6,7 @@
         "startingState": {
             "$ref": "./gamestate.json"
         },
-        "timePerEco": {
+        "ecoInterval": {
             "type": "number"
         },
         "bloonQueueSize": {

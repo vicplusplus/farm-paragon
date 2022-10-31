@@ -10,7 +10,7 @@ export default class UpgradeTowerAction implements Action {
     public tower: Tower;
     public targetUpgrades: number[];
 
-    apply(state: GameState, rules: GameRules, actions: Action[]): void {
+    apply(state: GameState, rules: GameRules): void {
         // if any of the upgrades are less than the current upgrade, then we can't upgrade
         if (this.targetUpgrades.some((upgrade, index) => upgrade < this.tower.upgrades![index])) return;
 

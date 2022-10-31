@@ -31,7 +31,7 @@ export function Simulate(
 
         // apply the action
         state.time = action.time;
-        action.apply(state, rules, actions);
+        action.apply(state, rules);
         states.push({ ...state });
         actionsSoFar.push(action);
     }
@@ -51,4 +51,21 @@ const GetTotalRoundTime = (rules: GameRules): number => rules.rounds.reduce((a, 
  * @param rules The rules to use for determining the time between eco actions.
  * @returns A list of default actions to be applied at the start of the simulation.
  */
-const GetStartingActions = (rules: GameRules): Action[] => [new RoundStartAction(0), new ApplyEcoAction(rules.timePerEco)];
+function GetStartingActions(rules: GameRules): Action[] {
+    // get total round time
+    const totalRoundTime = GetTotalRoundTime(rules);
+
+    // create an eco action for each eco interval until the end of the last round
+    let actions: Action[] = [];
+    for (let i = rules.ecoInterval; i < totalRoundTime; i += rules.ecoInterval) {
+        actions.push(new ApplyEcoAction(i));
+    }
+
+    // add a round start action for each round
+    let time = 0;
+    for (let i = 0; i < rules.rounds.length; i++) {
+        time += rules.rounds[i].length;
+        actions.push(new RoundStartAction(time));
+    }
+    return actions;
+}

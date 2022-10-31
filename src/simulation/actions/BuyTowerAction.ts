@@ -9,7 +9,7 @@ export class BuyTowerAction implements Action {
     public priority: number;
     public tower: Tower;
 
-    apply(state: GameState, rules: GameRules, actions: Action[]): void {
+    apply(state: GameState, rules: GameRules): void {
         state.towers.push(this.tower);
         state.cash -= this.tower.baseCost;
         this.tower.moneySpent! += this.tower.baseCost;

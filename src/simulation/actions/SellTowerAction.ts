@@ -9,7 +9,7 @@ export class SellTowerAction implements Action {
     public priority: number;
     public tower: Tower;
 
-    apply(state: GameState, rules: GameRules, actions: Action[]): void {
+    apply(state: GameState, rules: GameRules): void {
         state.cash += this.tower.moneySpent! * rules.sellMultiplier;
         // potentially has problems with exact duplicate towers, but that shouldn't have any effect on the simulation
         state.towers.splice(state.towers.indexOf(this.tower));

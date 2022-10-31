@@ -7,7 +7,7 @@
         "time": 0,
         "towers": []
     },
-    "timePerEco": 5,
+    "ecoInterval": 5,
     "bloonQueueSize": 6,
     "sellMultiplier": 0.7,
     "availableBloons": [],

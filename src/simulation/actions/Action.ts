@@ -5,5 +5,5 @@ export default interface Action {
     type: string;
     time: number;
     priority: number;
-    apply(state: GameState, rules: GameRules, actions: Action[]): void;
+    apply(state: GameState, rules: GameRules): void;
 }

@@ -5,7 +5,7 @@ import Tower from "./Tower";
 
 export default interface GameRules {
     startingState: GameState;
-    timePerEco: number;
+    ecoInterval: number;
     bloonQueueSize: number;
     availableTowers: Tower[];
     availableBloons: Bloon[];

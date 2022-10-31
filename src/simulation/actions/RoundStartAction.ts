@@ -7,11 +7,8 @@ export default class RoundStartAction implements Action {
     public time: number;
     public priority: number = 200;
 
-    apply(state: GameState, rules: GameRules, actions: Action[]): void {
+    apply(state: GameState, rules: GameRules): void {
         state.round++;
-        if (state.round < rules.rounds.length) {
-            actions.push(new RoundStartAction(this.time + rules.rounds[state.round].length))
-        }
     }
 
     constructor(time: number) {
