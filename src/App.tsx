@@ -9,7 +9,6 @@ export default function App() {
     // create state variable to store the simulation result
     const [simulationResult, setSimulationResult] = useReducer(() => Simulate(rulesJSON), [[], []]);
 
-
     return (
         <div className="App">
             <header>
@@ -28,7 +27,6 @@ export default function App() {
             </pre>
         </div>
     );
-
 }
 
 
