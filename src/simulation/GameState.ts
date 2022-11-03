@@ -7,5 +7,5 @@ export default interface GameState {
     time: number;
     round: number;
     towers: Tower[];
-    bloonQueue?: Bloon[];
+    bloonQueue: Bloon[];
 }

@@ -17,10 +17,8 @@ export function Simulate(
     state: GameState = { ...rules.startingState },
     actions: Action[] = GetStartingActions(rules),
     endTime: number = GetTotalRoundTime(rules)
-): [GameState[], Action[]] {
+): GameState[] {
     let states: GameState[] = [{ ...state }];
-
-    let actionsSoFar: Action[] = [];
 
     while (actions.length > 0 && state.time < endTime) {
         actions.sort((a, b) => a.time - b.time || b.priority - a.priority);
@@ -33,10 +31,9 @@ export function Simulate(
         state.time = action.time;
         action.apply(state, rules);
         states.push({ ...state });
-        actionsSoFar.push(action);
     }
 
-    return [states, actionsSoFar];
+    return states;
 }
 
 /**
