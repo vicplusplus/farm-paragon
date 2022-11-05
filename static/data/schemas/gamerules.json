@@ -18,6 +18,24 @@
                 "$ref": "./tower.json"
             }
         },
+        "availableHeroes": {
+            "type": "array",
+            "items": {
+                "$ref": "./hero.json"
+            }
+        },
+        "selectedTowersIndices": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "uniqueItems": true,
+            "items": {
+                "type": "integer"
+            }
+        },
+        "selectedHeroIndex": {
+            "type": "integer"
+        },
         "availableBloons": {
             "type": "array",
             "items": {
@@ -36,9 +54,12 @@
     },
     "required": [
         "startingState",
-        "timePerEco",
+        "ecoInterval",
         "bloonQueueSize",
         "availableTowers",
+        "availableHeroes",
+        "selectedTowersIndices",
+        "selectedHeroIndex",
         "availableBloons",
         "rounds",
         "sellMultiplier"
