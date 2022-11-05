@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Tower",
+    "title": "Hero",
     "type": "object",
     "properties": {
         "name": {
@@ -11,15 +11,10 @@
         },
         "upgradeCosts": {
             "type": "array",
-            "minItems": 3,
-            "maxItems": 3,
+            "minItems": 20,
+            "maxItems": 20,
             "items": {
-                "type": "array",
-                "minItems": 5,
-                "maxItems": 5,
-                "items": {
-                    "type": "number"
-                }
+                "type": "number"
             }
         }
     },
