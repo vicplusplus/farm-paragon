@@ -21,5 +21,13 @@
         "lastRoundAvailable": {
             "type": "integer"
         }
-    }
+    },
+    "required": [
+        "name",
+        "cost",
+        "eco",
+        "timeToSend",
+        "firstRoundAvailable",
+        "lastRoundAvailable"
+    ]
 }

@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Hero",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "baseCost": {
+            "type": "number"
+        },
+        "upgradeCosts": {
+            "type": "array",
+            "minItems": 20,
+            "maxItems": 20,
+            "items": {
+                "type": "number"
+            }
+        }
+    },
+    "required": [
+        "name",
+        "baseCost",
+        "upgradeCosts"
+    ]
+}

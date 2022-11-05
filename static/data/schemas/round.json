@@ -15,6 +15,7 @@
     },
     "required": [
         "roundNumber",
-        "length"
+        "length",
+        "stallAmount"
     ]
 }

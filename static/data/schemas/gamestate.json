@@ -33,6 +33,7 @@
         "cash",
         "eco",
         "time",
-        "towers"
+        "towers",
+        "bloonQueue"
     ]
 }

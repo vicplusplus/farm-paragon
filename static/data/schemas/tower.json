@@ -6,20 +6,26 @@
         "name": {
             "type": "string"
         },
-        "isHero": {
-            "type": "boolean"
-        },
         "baseCost": {
             "type": "number"
         },
         "upgradeCosts": {
             "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
             "items": {
                 "type": "array",
+                "minItems": 5,
+                "maxItems": 5,
                 "items": {
                     "type": "number"
                 }
             }
         }
-    }
+    },
+    "required": [
+        "name",
+        "baseCost",
+        "upgradeCosts"
+    ]
 }
