@@ -112,10 +112,10 @@ export default class Node {
      * @param rules The rules to apply
      * @returns Whether the node and all of its children were successfully resolved or not
      */
-    public resolveChildren = (rules: GameRules): boolean => {
+    public resolveChildrenRecursive = (rules: GameRules): boolean => {
         if (!this.resolve(rules)) return false;
         for (const child of this.children) {
-            if (!child.resolveChildren(rules)) return false;
+            if (!child.resolveChildrenRecursive(rules)) return false;
         }
         return true;
     }
