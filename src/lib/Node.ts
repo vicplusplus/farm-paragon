@@ -104,4 +104,19 @@ export default class Node {
         }
         return true;
     }
+
+    /**
+     * Resolves a node and all of its children
+     * This is a recursive function, and should be used sparingly.
+     * This should not be used for optimization, only for when users input an intermediate action.
+     * @param rules The rules to apply
+     * @returns Whether the node and all of its children were successfully resolved or not
+     */
+    public resolveChildren = (rules: GameRules): boolean => {
+        if (!this.resolve(rules)) return false;
+        for (const child of this.children) {
+            if (!child.resolveChildren(rules)) return false;
+        }
+        return true;
+    }
 }
