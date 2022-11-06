@@ -10,7 +10,7 @@
             "type": "number"
         },
         "bloonQueueSize": {
-            "type": "number"
+            "type": "integer"
         },
         "availableTowers": {
             "type": "array",

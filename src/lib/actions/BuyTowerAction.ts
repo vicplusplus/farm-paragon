@@ -1,27 +1,39 @@
-import GameRules from "../GameRules";
-import GameState from "../GameState";
-import Tower from "../Tower";
-import Action from "./Action";
+import type GameRules from "../GameRules";
+import type GameState from "../GameState";
+import type Tower from "../Tower";
+import type Action from "./Action";
 
 export class BuyTowerAction implements Action {
-    public type: string = "BuyTowerAction";
     public time: number;
-    public priority: number;
     public tower: Tower;
 
-    apply(state: GameState, rules: GameRules): void {
-        state.towers.push(this.tower);
-        state.cash -= this.tower.baseCost;
-        this.tower.moneySpent! += this.tower.baseCost;
+    apply(state: GameState): GameState {
+        return {
+            ...state,
+            cash: state.cash - this.tower.baseCost,
+            towers: [
+                ...state.towers, {
+                    ...this.tower,
+                    moneySpent: this.tower.baseCost,
+                }
+            ]
+        }
     }
 
-    constructor(time: number, priority: number, tower: Tower) {
-        this.time = time;
-        this.priority = priority;
-        this.tower = tower;
-        // add as many upgrade paths as there are upgradeCost paths
+    validate(state: GameState, rules: GameRules): boolean {
+        // is the action in the past?
+        if (state.time >= this.time) return false;
+        // is there not enough cash?
+        if (state.cash < this.tower.baseCost) return false;
+        // is the tower not selected?
+        const selectedTowers = rules.selectedTowersIndices.map(i => rules.availableTowers[i]);
+        if (!selectedTowers.includes(this.tower)) return false;
+        // otherwise, it's valid
+        return true;
+    }
 
-        this.tower.upgrades ??= this.tower.upgradeCosts.map(() => 0);
-        this.tower.moneySpent = 0;
+    constructor(time: number, tower: Tower) {
+        this.time = time;
+        this.tower = tower;
     }
 }

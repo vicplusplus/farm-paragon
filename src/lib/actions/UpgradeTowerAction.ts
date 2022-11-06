@@ -1,40 +1,53 @@
-import GameRules from "../GameRules";
-import GameState from "../GameState";
-import Action from "./Action";
-import Tower from "../Tower";
+import type GameState from "../GameState";
+import type Action from "./Action";
+import type Tower from "../Tower";
 
 export default class UpgradeTowerAction implements Action {
-    public type: string = "UpgradeTowerAction";
     public time: number;
-    public priority: number;
     public tower: Tower;
     public targetUpgrades: number[];
 
-    apply(state: GameState, rules: GameRules): void {
-        // if any of the upgrades are less than the current upgrade, then we can't upgrade
-        if (this.targetUpgrades.some((upgrade, index) => upgrade < this.tower.upgrades![index])) return;
+    apply(state: GameState): GameState {
+        return {
+            ...state,
+            cash: state.cash - this.cost(),
+            towers: state.towers.map(t => {
+                if (t === this.tower) {
+                    return {
+                        ...t,
+                        upgrades: this.targetUpgrades,
+                        moneySpent: t.moneySpent + this.cost()
+                    }
+                }
+                return t;
+            })
+        };
+    }
 
-        // determine cost of upgrades
-        const cost = this.targetUpgrades.reduce((cost, upgrade, index) => {
+    validate(state: GameState): boolean {
+        // is the tower in the list?
+        if (!state.towers.includes(this.tower)) return false;
+        // are any of the upgrades less than the current upgrade?
+        if (this.targetUpgrades.some((upgrade, index) => upgrade < this.tower.upgrades[index])) return false;
+        // is there enough cash?
+        if (state.cash < this.cost()) return false;
+
+        return true;
+    }
+
+    cost = (): number => {
+        return this.targetUpgrades.reduce((cost, upgrade, index) => {
             // iterate upgrades from tower.upgrades to targetUpgrades and sum the cost
-            for (let i = this.tower.upgrades![index]; i < upgrade; i++) {
+            for (let i = this.tower.upgrades[index]; i < upgrade; i++) {
                 cost += this.tower.upgradeCosts[index][i];
             }
             return cost;
         });
-
-        // if we can't afford the upgrades, then we can't upgrade
-        if (state.cash < cost) return;
-
-        // apply upgrades
-        this.tower.upgrades = this.targetUpgrades;
-        state.cash -= cost;
-        this.tower.moneySpent! += cost;
     }
 
-    constructor(time: number, priority: number, tower: Tower, upgrades: number[]) {
+
+    constructor(time: number, tower: Tower, upgrades: number[]) {
         this.time = time;
-        this.priority = priority;
         this.tower = tower;
         this.targetUpgrades = upgrades;
     }

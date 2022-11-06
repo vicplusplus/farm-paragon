@@ -1,15 +1,17 @@
-import GameRules from "../GameRules";
-import GameState from "../GameState";
-import Action from "./Action";
+import type GameState from "../GameState";
+import type Action from "./Action";
 
 export default class ApplyEcoAction implements Action {
-    public type: string = "ApplyEcoAction";
     public time: number;
-    public priority: number = 100;
 
-    apply(state: GameState, rules: GameRules): void {
-        state.cash += state.eco;
+    apply(state: GameState): GameState {
+        return {
+            ...state,
+            cash: state.cash + state.eco,
+        }
     }
+
+    validate = (state: GameState) => state.time < this.time;
 
     constructor(time: number) {
         this.time = time;
