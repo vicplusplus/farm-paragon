@@ -9,7 +9,7 @@
         "baseCost": {
             "type": "number"
         },
-        "upgradeCosts": {
+        "levelCosts": {
             "type": "array",
             "minItems": 20,
             "maxItems": 20,
@@ -21,6 +21,6 @@
     "required": [
         "name",
         "baseCost",
-        "upgradeCosts"
+        "levelCosts"
     ]
 }

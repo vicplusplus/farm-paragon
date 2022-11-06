@@ -1,26 +1,32 @@
-import GameRules from "../GameRules";
-import GameState from "../GameState";
-import Tower from "../Tower";
-import Action from "./Action";
+import type GameRules from "../GameRules";
+import type GameState from "../GameState";
+import type Tower from "../Tower";
+import type Action from "./Action";
 
 export class SellTowerAction implements Action {
-    public type: string = "SellTowerAction";
     public time: number;
-    public priority: number;
     public tower: Tower;
 
-    apply(state: GameState, rules: GameRules): void {
-        state.cash += this.tower.moneySpent! * rules.sellMultiplier;
+    apply(state: GameState, rules: GameRules): GameState {
+        state.cash += this.tower.moneySpent * rules.sellMultiplier;
         // potentially has problems with exact duplicate towers, but that shouldn't have any effect on the simulation
         state.towers.splice(state.towers.indexOf(this.tower));
+
+        return {
+            ...state,
+            cash: state.cash + this.tower.moneySpent * rules.sellMultiplier,
+            towers: state.towers.filter(t => t !== this.tower) // remove the tower from the list
+        }
     }
 
-    constructor(time: number, priority: number, tower: Tower) {
-        this.time = time;
-        this.priority = priority;
-        this.tower = tower;
-        // add as many upgrade paths as there are upgradeCost paths
+    validate(state: GameState): boolean {
+        // is the tower in the list?
+        if (!state.towers.includes(this.tower)) return false;
+        return true;
+    }
 
-        this.tower.upgrades ??= this.tower.upgradeCosts.map(() => 0);
+    constructor(time: number, tower: Tower) {
+        this.time = time;
+        this.tower = tower;
     }
 }

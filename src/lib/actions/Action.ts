@@ -1,9 +1,8 @@
-import GameRules from "../GameRules";
-import GameState from "../GameState";
+import type GameRules from "../GameRules";
+import type GameState from "../GameState";
 
 export default interface Action {
-    type: string;
     time: number;
-    priority: number;
-    apply(state: GameState, rules: GameRules): void;
+    apply(state: GameState, rules: GameRules): GameState;
+    validate(state: GameState, rules: GameRules): boolean;
 }
