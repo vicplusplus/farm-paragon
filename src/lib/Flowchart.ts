@@ -8,6 +8,11 @@ export default class Flowchart {
     public stateTree: Node; // The tree of actions and resulting game states
     public rules: GameRules; // The rules of the game
 
+    /**
+     * Creates a new Flowchart
+     * Flowcharts are used to generate a tree of actions and resulting game states
+     * @param rules The rules of the game
+     */
     public constructor(rules: GameRules) {
         this.rules = rules;
         this.stateTree = Flowchart.getStartingStateTree(rules);
