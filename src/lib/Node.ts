@@ -66,6 +66,34 @@ export default class Node {
 
         this.value[1] = action.apply(parentState, rules);
         return true;
+    }
 
+    /**
+     * Resolves a single branch of the tree
+     * starts at this node and ends at the given node if it's a descendant of this node
+     * @param rules The rules to apply
+     * @param endingNode The node to stop at
+     * @returns Whether the branch was successfully resolved or not
+     */
+    public resolveBranch = (rules: GameRules, endingNode: Node): boolean => {
+
+        // Check if the ending node is a descendant of this node
+        // At the same time, add all nodes to an array
+        let currentNode: Node | null = endingNode;
+        const nodes: Node[] = [];
+        while (currentNode !== null) {
+            nodes.push(currentNode);
+            if (currentNode === this) break;
+            currentNode = currentNode.parent;
+        }
+        if (currentNode === null) return false; // the ending node is not a descendant of this node
+
+        // Resolve the branch
+        // Iterate through the nodes in reverse order because we want to resolve the root node first
+        for (let i = nodes.length - 1; i >= 0; i--) {
+            const node = nodes[i];
+            if (!node.resolve(rules)) return false;
+        }
+        return true;
     }
 }
