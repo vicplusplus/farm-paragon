@@ -4,6 +4,10 @@ import type Round from "./Round";
 import type Tower from "./Tower";
 import type Hero from "./Hero";
 
+/**
+ * The rules of the game.
+ * Included are the available towers, bloon sends and queue size, starting state, rounds, and selected loadout, as well as other miscellaneous rules.
+ */
 export default interface GameRules {
     startingState: GameState;
     ecoInterval: number;

@@ -3,10 +3,17 @@ import RoundStartAction from "./actions/RoundStartAction";
 import type GameRules from "./GameRules";
 import Node from "./Node";
 
+/**
+ * A flowchart is a tree of actions and their resulting game states.
+ * The root node is the starting state.
+ * This structure allows the player to conditionally execute actions and see the results.
+ * 
+ * This requires extensive testing.
+ */
 export default class Flowchart {
 
-    public stateTree: Node; // The tree of actions and resulting game states
-    public rules: GameRules; // The rules of the game
+    public stateTree: Node;
+    public rules: GameRules;
 
     /**
      * Creates a new Flowchart

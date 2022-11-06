@@ -2,6 +2,10 @@ import type Action from "./actions/Action";
 import type GameRules from "./GameRules";
 import type GameState from "./GameState";
 
+/**
+ * This represents the state of the game at a given time with the action that was applied to get there.
+ * This is used to traverse the game state tree, and also contains important functions for validating and applying actions.
+ */
 export default class Node {
     /**
      * An action with its resulting game state.
@@ -53,6 +57,10 @@ export default class Node {
      * Resolves the GameState of a Node
      * Applies the action to the parent state if it's valid
      * Returns the resulting state, or null if the action is invalid or the parent state is null
+     * 
+     * IMPORTANT:
+     * The GameState of a node will not necessarily be accurate, so it is important to resolve a node and its children before reading the GameState.
+     * Do not use this function to resolve an intermediate node, as it will not resolve the children.
      * @param rules The rules to apply
      * @returns Whether the node was successfully resolved or not
      */
