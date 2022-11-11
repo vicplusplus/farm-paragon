@@ -10,7 +10,7 @@ const App: Component = () => {
           This site is under construction.
         </h1>
         <p>
-          If you would like to contribute, please visit the <a href="https://github.com/vicplusplus/farm-paragon"> GitHub repository</a>.
+          If you would like to contribute, please visit the <a href="https://github.com/vicplusplus/farm-paragon" target='_blank' rel="noreferrer noopener"> GitHub repository</a>.
         </p>
       </header>
     </div>
