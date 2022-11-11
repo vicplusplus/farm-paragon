@@ -6,17 +6,12 @@ const App: Component = () => {
   return (
     <div class={styles.App}>
       <header class={styles.header}>
+        <h1>
+          This site is under construction.
+        </h1>
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          If you would like to contribute, please visit the <a href="https://github.com/vicplusplus/farm-paragon"> GitHub repository</a>.
         </p>
-        <a
-          class={styles.link}
-          href="https://github.com/solidjs/solid"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Solid
-        </a>
       </header>
     </div>
   );
