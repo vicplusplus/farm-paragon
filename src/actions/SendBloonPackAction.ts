@@ -17,7 +17,13 @@ export class SendBloonPackAction implements Action {
         state.bloonQueue.splice(0, 1);
     }
 
-    verify(rules: GameRules, state: GameState): boolean {
+    verify(rules: GameRules, state: GameState) {
+        if (state.bloonQueue[0] !== this.bloons) {
+            throw new Error(
+                `${this.bloons.name} is not in queue`
+                + `\nCurrent queue: ${JSON.stringify(state.bloonQueue)}`
+            )
+        }
         return state.bloonQueue[0] === this.bloons;
     }
 }

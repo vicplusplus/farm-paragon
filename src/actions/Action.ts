@@ -6,5 +6,5 @@ export interface Action {
     forced: boolean;
 
     apply(rules: GameRules, state: GameState): Action | void;
-    verify(rules: GameRules, state: GameState): boolean;
+    verify(rules: GameRules, state: GameState);
 }

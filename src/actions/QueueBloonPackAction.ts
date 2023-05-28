@@ -26,12 +26,25 @@ export class QueueBloonPackAction implements Action {
         )
     }
 
-    verify(rules: GameRules, state: GameState): boolean {
-        return (
-            state.money >= this.bloons.price
-            && state.round >= this.bloons.roundsAvailable[0]
-            && state.round <= this.bloons.roundsAvailable[1]
-            && state.bloonQueue.length < rules.bloonQueueSize
-        );
+    verify(rules: GameRules, state: GameState) {
+        if (state.money < this.bloons.price) {
+            throw new Error(
+                `Not enough money to queue this bloon pack.`
+                + `\nCost: ${this.bloons.price}\nMoney: ${state.money}`);
+        }
+        if (state.round < this.bloons.roundsAvailable[0] || state.round > this.bloons.roundsAvailable[1]) {
+            throw new Error(
+                `Cannot send ${this.bloons.name} at this round.`
+                + `\nAvailable rounds: [${this.bloons.roundsAvailable[0]}, ${this.bloons.roundsAvailable[1]}]`
+                + `\nCurrent round: ${state.round}`
+            )
+        }
+        if (state.bloonQueue.length >= rules.bloonQueueSize) {
+            throw new Error(
+                `Cannot add bloon pack to full queue.`
+                + `\nMax queue size: ${rules.bloonQueueSize}`
+                + `\nCurrent queue: ${JSON.stringify(state.bloonQueue)}`
+            )
+        }
     }
 }

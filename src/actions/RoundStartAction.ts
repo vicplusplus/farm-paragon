@@ -14,7 +14,5 @@ export class RoundStartAction implements Action {
         state.round += 1;
     }
 
-    verify(rules: GameRules, state: GameState): boolean {
-        return true
-    }
+    verify(rules: GameRules, state: GameState) { }
 }

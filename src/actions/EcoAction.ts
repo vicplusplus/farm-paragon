@@ -14,7 +14,5 @@ export class EcoAction implements Action {
         state.money += state.eco;
     }
 
-    verify(rules: GameRules, state: GameState): boolean {
-        return true
-    }
+    verify(rules: GameRules, state: GameState) { }
 }
