@@ -7,18 +7,21 @@ export class GameRules {
     startingEco: number;
     startingMoney: number;
     timePerEcoTick: number;
+    bloonQueueSize: number;
     roundLengths: number[];
 
     constructor(
         startingEco: number,
         startingMoney: number,
         timePerEcoTick: number,
-        roundLengths: number[]
+        roundLengths: number[],
+        bloonQueueSize: number
     ) {
         this.startingEco = startingEco;
         this.startingMoney = startingMoney;
         this.timePerEcoTick = timePerEcoTick;
         this.roundLengths = roundLengths;
+        this.bloonQueueSize = bloonQueueSize;
     }
 }
 
@@ -49,6 +52,7 @@ export function generateInitialGameState(rules: GameRules): GameState {
         rules.startingEco,
         rules.startingMoney,
         0,
-        0
+        0,
+        []
     )
 }

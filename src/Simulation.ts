@@ -12,12 +12,20 @@ export function simulate(rules: GameRules, inputActions: Action[]): GameState[] 
 
     let currentState = generateInitialGameState(rules);
     let states = [clone(currentState)];
-    for (const action of combinedActions) {
+    for (let i = 0; i < combinedActions.length; i++) {
+        let action = combinedActions[i];
         if (!action.verify(rules, currentState)) {
-            throw new Error("invalid action");
+            throw new Error(`Invalid action at:\n${JSON.stringify(action)}\n with state:\n${JSON.stringify(currentState)}`);
         }
-        action.apply(rules, currentState);
         currentState.time = action.time;
+        let followupAction = action.apply(rules, currentState);
+        if (followupAction) {
+            if (followupAction.time < action.time) {
+                throw new Error(`Created invalid action in the past from:\n${JSON.stringify(action)}`);
+            }
+            combinedActions.push(followupAction);
+            combinedActions.sort((a, b) => a.time - b.time);
+        }
         states.push(clone(currentState));
     }
     return states;

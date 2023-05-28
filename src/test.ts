@@ -1,12 +1,15 @@
+import { BloonPack } from "./BloonPack";
 import { GameRules, generateEcoActions } from "./GameRules";
 import { simulate } from "./Simulation";
+import { QueueBloonPackAction } from "./actions/QueueBloonPackAction";
 
 // owo
 const dummyThicc = new GameRules(
     250,
     650,
     6,
-    [1, 45, 2, 24, 75, 82, 4, 72, 9, 20, 34, 28, 3, 13, 954, 45]
+    [1, 45, 2, 24, 75, 82, 4, 72, 9, 20, 34, 28, 3, 13, 954, 45],
+    5
 ); // the numbers mason what do they mean
 
 // functional programming :((
@@ -47,4 +50,15 @@ const dummyThicc = new GameRules(
 // i loved you
 // i loved you, copilot
 
-console.log(simulate(dummyThicc, []));
+console.log(simulate(
+    dummyThicc,
+    [
+        new QueueBloonPackAction(20, new BloonPack(
+            'grouped reds',
+            25,
+            1.2,
+            [1, 9],
+            0.8,
+        ))
+    ]
+));

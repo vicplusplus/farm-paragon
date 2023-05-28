@@ -4,6 +4,7 @@ import { GameState } from "../GameState";
 
 export class RoundStartAction implements Action {
     time: number;
+    forced: boolean = true;
 
     constructor(time: number) {
         this.time = time;
