@@ -1,5 +1,5 @@
-import { GameRules } from "./GameRules";
-import { GameState } from "./GameState";
+import { GameRules } from "../GameRules";
+import { GameState } from "../GameState";
 
 export interface Action {
     time: number;

@@ -1,7 +1,7 @@
-import { Action } from "./Action";
-import { EcoAction } from "./EcoAction";
+import { Action } from "./actions/Action";
+import { EcoAction } from "./actions/EcoAction";
 import { GameState } from "./GameState";
-import { RoundStartAction } from "./RoundStartAction";
+import { RoundStartAction } from "./actions/RoundStartAction";
 
 export class GameRules {
     startingEco: number;

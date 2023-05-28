@@ -1,8 +1,8 @@
 import { Action } from "./Action";
-import { GameRules } from "./GameRules";
-import { GameState } from "./GameState";
+import { GameRules } from "../GameRules";
+import { GameState } from "../GameState";
 
-export class RoundStartAction implements Action {
+export class EcoAction implements Action {
     time: number;
 
     constructor(time: number) {
@@ -10,7 +10,7 @@ export class RoundStartAction implements Action {
     }
 
     apply(rules: GameRules, state: GameState) {
-        state.round += 1;
+        state.money += state.eco;
     }
 
     verify(rules: GameRules, state: GameState): boolean {
