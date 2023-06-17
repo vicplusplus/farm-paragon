@@ -1,17 +1,13 @@
 import { BloonPack } from "./BloonPack";
+import { Cooldown } from "./Cooldown";
 
-export class GameState {
+
+export type GameState = {
     eco: number;
     money: number;
     time: number;
-    round: number;
-    bloonQueue: BloonPack[];
-
-    constructor(eco: number, money: number, time: number, round: number, bloonQueue: BloonPack[]) {
-        this.eco = eco;
-        this.money = money;
-        this.time = time;
-        this.round = round;
-        this.bloonQueue = bloonQueue;
-    }
+    // By adding a currentBloonSend, we can remove the need for action generators entirely
+    currentBloonSend: BloonPack | null;
+    bloonQueue: [BloonPack, number][];
+    cooldowns: Cooldown[];
 }
