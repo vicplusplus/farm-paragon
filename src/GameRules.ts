@@ -9,6 +9,7 @@ export type GameRules = {
     roundLengths: number[];
     bloonPacks: { [key: string]: BloonPack }
     bloonSendInputDelay: number;
+    bloonSendHoldTime: number;
 }
 
 export function generateInitialGameState(rules: GameRules): GameState {
@@ -16,6 +17,7 @@ export function generateInitialGameState(rules: GameRules): GameState {
         eco: rules.startingEco,
         money: rules.startingMoney,
         time: 0,
+        lastSendTime: 0,
         currentBloonSend: null,
         bloonQueue: [],
         cooldowns: []

@@ -8,6 +8,7 @@ export type GameState = {
     time: number;
     // By adding a currentBloonSend, we can remove the need for action generators entirely
     currentBloonSend: BloonPack | null;
+    lastSendTime: number;
     bloonQueue: [BloonPack, number][];
     cooldowns: Cooldown[];
 }

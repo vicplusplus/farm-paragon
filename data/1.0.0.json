@@ -408,5 +408,6 @@
             "timeToSend": 1
         }
     ],
-    "bloonSendInputDelay": 0.2
+    "bloonSendInputDelay": 0.75,
+    "bloonSendHoldTime": 0.25
 }

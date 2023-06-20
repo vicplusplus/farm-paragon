@@ -8,6 +8,8 @@ export function clone_with_override<T>(obj: T, overrides: Partial<T>): T {
     return newObject;
 }
 
+export const EPSILON = 0.0000001;
+
 export function clone<T>(source: T): T {
     if (typeof source !== "object" || source === null || source === undefined) {
         return source;
