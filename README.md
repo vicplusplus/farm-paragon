@@ -40,7 +40,7 @@ npm install
 
 ## Usage
 
-Check the ./examples directory for ways to use the library.
+Check the [/examples](examples) directory for ways to use the library.
 
 
 ## Contributing
