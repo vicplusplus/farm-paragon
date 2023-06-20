@@ -1,6 +1,6 @@
-import { GameRules } from "./GameRules";
-import { simulate } from "./Simulation";
-import { BloonSendBreakpointAction } from "./actions/BloonSendBreakpointAction";
+import { GameRules } from "../src/GameRules";
+import { simulate } from "../src/Simulation";
+import { BloonSendBreakpointAction } from "../src/actions/BloonSendBreakpointAction";
 import { readFileSync } from "fs"
 
 // read rules from data/1.0.0.json

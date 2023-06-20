@@ -75,7 +75,7 @@ export function simulate(rules: GameRules, actions: IAction[], endTime: number, 
  */
 function getPreprocessedActions(rules: GameRules, actions: IAction[], initialState: GameState, endTime: number): PriorityQueue<IAction> {
     return PriorityQueue.fromArray(
-        actions.filter(a => a.time >= initialState!.time && a.time <= endTime)
+        actions.filter(a => a.time >= initialState.time && a.time <= endTime)
             .map(a => {
                 // add rules.bloonSendInputDelay to the start time of all QueueBloonPackActions and BloonSendBreakpointActions 
                 // to account for the delay between when the user inputs a bloon send and when it is actually sent

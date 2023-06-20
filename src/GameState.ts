@@ -6,9 +6,8 @@ export type GameState = {
     eco: number;
     money: number;
     time: number;
-    // By adding a currentBloonSend, we can remove the need for action generators entirely
-    currentBloonSend: BloonPack | null;
-    lastSendTime: number;
+    currentBloonSend: BloonPack | null; // Keeps track of what bloon the user is currently ecoing with
+    lastSendTime: number; // Keeps track of the last time a bloon was sent
     bloonQueue: [BloonPack, number][];
     cooldowns: Cooldown[];
 }
