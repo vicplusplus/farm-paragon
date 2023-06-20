@@ -2,7 +2,6 @@ import { GameRules } from "./GameRules";
 import { simulate } from "./Simulation";
 import { BloonSendBreakpointAction } from "./actions/BloonSendBreakpointAction";
 import { readFileSync } from "fs"
-import { QueueBloonPackAction } from "./actions/QueueBloonPackAction";
 
 // read rules from data/1.0.0.json
 const rules: GameRules = JSON.parse(readFileSync("data/1.0.0.json", "utf8"));

@@ -2,7 +2,7 @@ import { IAction } from "./IAction";
 import { GameRules, getRoundAtTime } from "../GameRules";
 import { GameState } from "../GameState";
 import { BloonPack } from "../BloonPack";
-import { EPSILON } from "../util";
+import { EPSILON } from "../constants";
 
 export class QueueBloonPackAction implements IAction {
     time: number;
