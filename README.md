@@ -20,22 +20,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Installation
 
-1. Clone the repository
-
 ```bash
-git clone https://github.com/vicplusplus/farm-paragon.git
-```
-
-2. Navigate to the project directory
-
-```bash
-cd farm-paragon
-```
-
-3. Install dependencies
-
-```bash
-npm install
+npm install farm-paragon
 ```
 
 ## Usage

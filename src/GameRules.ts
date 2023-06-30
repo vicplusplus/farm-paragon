@@ -7,7 +7,7 @@ export type GameRules = {
     timePerEcoTick: number;
     bloonQueueSize: number;
     roundLengths: number[];
-    bloonPacks: { [key: string]: BloonPack }
+    bloonPacks: BloonPack[];
     bloonSendInputDelay: number;
     bloonSendHoldTime: number;
 }
