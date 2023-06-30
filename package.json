@@ -1,5 +1,5 @@
 {
-  "name": "farm-paragon-server",
+  "name": "farm-paragon",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vicplusplus/farm-paragon-server.git"
+    "url": "git+https://github.com/vicplusplus/farm-paragon.git"
   },
   "keywords": [],
   "author": "vicplusplus@proton.me",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vicplusplus/farm-paragon-server/issues"
+    "url": "https://github.com/vicplusplus/farm-paragon/issues"
   },
-  "homepage": "https://github.com/vicplusplus/farm-paragon-server#readme",
+  "homepage": "https://github.com/vicplusplus/farm-paragon#readme",
   "devDependencies": {
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
