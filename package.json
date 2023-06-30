@@ -11,8 +11,8 @@
     "url": "git+https://github.com/vicplusplus/farm-paragon-server.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "vicplusplus@proton.me",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/vicplusplus/farm-paragon-server/issues"
   },
