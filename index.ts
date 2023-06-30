@@ -5,15 +5,16 @@ import { simulate } from './src/Simulation';
 import { GameState } from './src/GameState';
 import { BloonPack } from './src/BloonPack';
 import { Cooldown } from './src/Cooldown';
-import { GameRules } from './src/GameRules';
+import { GameRules, getGameEndTime, getRoundAtTime, getTimeAtRoundStart } from './src/GameRules';
 
 // actions
 import { BloonSendBreakpointAction } from './src/actions/BloonSendBreakpointAction';
 import { QueueBloonPackAction } from './src/actions/QueueBloonPackAction';
+import { IAction } from './src/actions/IAction';
 
 
 export {
-    simulate,
+    simulate, getTimeAtRoundStart, getRoundAtTime, getGameEndTime,
     GameState, BloonPack, Cooldown, GameRules,
-    BloonSendBreakpointAction, QueueBloonPackAction
+    IAction, BloonSendBreakpointAction, QueueBloonPackAction
 }

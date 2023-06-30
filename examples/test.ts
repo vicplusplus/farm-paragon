@@ -1,7 +1,7 @@
-import { GameRules } from "../src/GameRules";
+import { GameRules, getTimeAtRoundStart } from "../src/GameRules";
 import { simulate } from "../src/Simulation";
 import { BloonSendBreakpointAction } from "../src/actions/BloonSendBreakpointAction";
-import { readFileSync } from "fs"
+import { readFileSync, writeFileSync } from "fs"
 
 // read rules from data/1.0.0.json
 const rules: GameRules = JSON.parse(readFileSync("data/1.0.0.json", "utf8"));
@@ -9,13 +9,13 @@ const rules: GameRules = JSON.parse(readFileSync("data/1.0.0.json", "utf8"));
 const results = simulate(
     rules,
     [
-        new BloonSendBreakpointAction(6, rules.bloonPacks[0])
-    ],
-    66.2,
+        new BloonSendBreakpointAction(getTimeAtRoundStart(rules, rules.bloonPacks[0].roundsAvailable[0]), 0),
+        new BloonSendBreakpointAction(getTimeAtRoundStart(rules, rules.bloonPacks[2].roundsAvailable[0]), 2),
+        new BloonSendBreakpointAction(getTimeAtRoundStart(rules, rules.bloonPacks[4].roundsAvailable[0]), 4),
+        new BloonSendBreakpointAction(getTimeAtRoundStart(rules, rules.bloonPacks[6].roundsAvailable[0]), 6),
+        new BloonSendBreakpointAction(getTimeAtRoundStart(rules, rules.bloonPacks[8].roundsAvailable[0]), 8),
+        new BloonSendBreakpointAction(getTimeAtRoundStart(rules, rules.bloonPacks[14].roundsAvailable[0]), 14),
+    ]
 );
 
-console.log(results.map(r => ({
-    time: Math.floor(r.time * 10) / 10,
-    money: Math.floor(r.money),
-    eco: Math.floor(r.eco),
-})));
+writeFileSync("results.json", JSON.stringify(results, null, 4));

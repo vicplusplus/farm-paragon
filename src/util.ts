@@ -9,19 +9,5 @@ export function clone_with_override<T>(obj: T, overrides: Partial<T>): T {
 }
 
 export function clone<T>(source: T): T {
-    if (typeof source !== "object" || source === null || source === undefined) {
-        return source;
-    }
-
-    if (Array.isArray(source)) {
-        return source.map(clone) as T;
-    }
-
-    const deepObj = {} as T;
-
-    for (const key of Object.keys(source)) {
-        deepObj[key as keyof T] = clone(source[key as keyof T]);
-    }
-
-    return deepObj;
+    return JSON.parse(JSON.stringify(source));
 }

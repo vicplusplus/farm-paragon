@@ -1,11 +1,11 @@
-import { GameRules, generateInitialGameState, getNextRoundStartTime, getRoundAtTime } from "./GameRules";
+import { GameRules, generateInitialGameState, getGameEndTime, getNextRoundStartTime, getRoundAtTime } from "./GameRules";
 import { GameState } from "./GameState";
 import { BloonSendBreakpointAction } from "./actions/BloonSendBreakpointAction";
 import { IAction } from "./actions/IAction";
 import { QueueBloonPackAction } from "./actions/QueueBloonPackAction";
+import { EPSILON } from "./constants";
 import { clone } from "./util";
 import { PriorityQueue } from "@datastructures-js/priority-queue";
-import { EPSILON } from "./constants";
 
 /**
  * Simulates the game over a specified period of time, applying actions and game rules to the game state at each step.
@@ -17,13 +17,15 @@ import { EPSILON } from "./constants";
  * @param {GameState} initialState - The initial state of the game. If not provided, it will be generated based on the game rules.
  * @returns {GameState[]} An array of game states representing the state of the game at each step of the simulation.
  */
-export function simulate(rules: GameRules, actions: IAction[], endTime: number, initialState: GameState = generateInitialGameState(rules)): GameState[] {
+export function simulate(rules: GameRules, actions: IAction[], endTime: number = getGameEndTime(rules), initialState: GameState = generateInitialGameState(rules)): GameState[] {
 
     let actionQueue = getPreprocessedActions(rules, actions, initialState, endTime);
 
     let currentState = clone(initialState);
 
     let states: GameState[] = [];
+
+    let count = 0;
 
     while (currentState.time < endTime) {
         // check if can apply eco tick
@@ -45,14 +47,19 @@ export function simulate(rules: GameRules, actions: IAction[], endTime: number, 
 
         // check if can send gameState's bloon pack
         while (
-            currentState.currentBloonSend !== null
-            && currentState.money >= currentState.currentBloonSend.price
-            && currentState.bloonQueue.length <= rules.bloonQueueSize
+            currentState.currentBloonSendIndex !== -1
+            && currentState.money >= rules.bloonPacks[currentState.currentBloonSendIndex].price
+            && currentState.bloonQueue.length < rules.bloonQueueSize
             && currentState.time - currentState.lastSendTime - rules.bloonSendHoldTime >= -EPSILON
         ) {
-            let action = new QueueBloonPackAction(currentState.time, currentState.currentBloonSend)
-            action.verify(rules, currentState);
-            action.apply(rules, currentState);
+            let action = new QueueBloonPackAction(currentState.time, currentState.currentBloonSendIndex)
+            try {
+                action.verify(rules, currentState);
+                action.apply(rules, currentState);
+            } catch (e) {
+                console.log(`${e}\n Automatically setting currentBloonSend to null.`);
+                currentState.currentBloonSendIndex = -1;
+            }
         }
 
         states.push(clone(currentState));
@@ -106,8 +113,8 @@ function getNextSimulationTime(rules: GameRules, state: GameState, actions: Prio
     let nextBloonSendTime = state.bloonQueue.length > 0 ? state.bloonQueue[0][1] : endTime;
 
     // Finds the next time a bloon send can be inputted if the queue isn't full and there is something to send
-    let nextBloonSendInputDelayTime = state.bloonQueue.length === rules.bloonQueueSize
-        && state.currentBloonSend !== null ? state.lastSendTime + rules.bloonSendHoldTime : endTime;
+    let nextBloonSendInputDelayTime = (state.bloonQueue.length < rules.bloonQueueSize
+        && state.currentBloonSendIndex !== -1 && state.money >= rules.bloonPacks[state.currentBloonSendIndex].price) ? state.lastSendTime + rules.bloonSendHoldTime : endTime;
 
     // Finds the next time an action can be taken
     let nextActionTime = !actions.isEmpty() ? actions.front().time : endTime;

@@ -18,7 +18,7 @@ export function generateInitialGameState(rules: GameRules): GameState {
         money: rules.startingMoney,
         time: 0,
         lastSendTime: 0,
-        currentBloonSend: null,
+        currentBloonSendIndex: -1,
         bloonQueue: [],
         cooldowns: []
     }
@@ -30,21 +30,29 @@ export function getRoundAtTime(rules: GameRules, time: number): number {
     // This is done to prevent time 0 from being considered round -1
     let round = 0;
     let sum = 0;
-    while (sum <= time) {
+    while (sum <= time && round < rules.roundLengths.length) {
         sum += rules.roundLengths[round];
         round++;
     }
-    return round - 1;
+    return sum > time ? round - 1 : -1;
 }
 
-export function getTotalTimeAtRound(rules: GameRules, round: number): number {
+export function getTimeAtRoundStart(rules: GameRules, round: number): number {
     let sum = 0;
-    for (let i = 0; i < round; i++) {
+    for (let i = 0; i < round && i < rules.roundLengths.length; i++) {
         sum += rules.roundLengths[i];
     }
     return sum;
 }
 
 export function getNextRoundStartTime(rules: GameRules, state: GameState): number {
-    return getTotalTimeAtRound(rules, getRoundAtTime(rules, state.time) + 1);
+    return getTimeAtRoundStart(rules, getRoundAtTime(rules, state.time) + 1);
+}
+
+export function getGameEndTime(rules: GameRules): number {
+    let sum = 0;
+    for (let i = 0; i < rules.roundLengths.length; i++) {
+        sum += rules.roundLengths[i];
+    }
+    return sum;
 }
