@@ -20,7 +20,6 @@ export function generateInitialGameState(rules: GameRules): GameState {
         lastSendTime: 0,
         currentBloonSendIndex: -1,
         bloonQueue: [],
-        cooldowns: []
     }
 }
 

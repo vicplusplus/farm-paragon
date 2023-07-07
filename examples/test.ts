@@ -15,7 +15,8 @@ const results = simulate(
         new BloonSendBreakpointAction(getTimeAtRoundStart(rules, rules.bloonPacks[6].roundsAvailable[0]), 6),
         new BloonSendBreakpointAction(getTimeAtRoundStart(rules, rules.bloonPacks[8].roundsAvailable[0]), 8),
         new BloonSendBreakpointAction(getTimeAtRoundStart(rules, rules.bloonPacks[14].roundsAvailable[0]), 14),
-    ]
+    ],
+    8
 );
 
-writeFileSync("results.json", JSON.stringify(results, null, 4));
+writeFileSync("results.json", JSON.stringify(results, null));

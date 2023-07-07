@@ -91,7 +91,7 @@ function getPreprocessedActions(rules: GameRules, actions: IAction[], initialSta
                 }
                 return a;
             }),
-        (a, b) => a.time - b.time
+        (a: IAction, b: IAction) => a.time - b.time
     );
 }
 
