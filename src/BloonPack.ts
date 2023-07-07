@@ -1,4 +1,4 @@
-export type BloonPack = {
+export interface BloonPack {
     name: string;
     price: number;
     eco: number;

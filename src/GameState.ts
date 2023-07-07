@@ -2,7 +2,7 @@ import { BloonPack } from "./BloonPack";
 import { Cooldown } from "./Cooldown";
 
 
-export type GameState = {
+export interface GameState {
     eco: number;
     money: number;
     time: number;

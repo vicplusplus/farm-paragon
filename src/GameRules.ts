@@ -1,7 +1,7 @@
 import { GameState } from "./GameState";
 import { BloonPack } from "./BloonPack";
 
-export type GameRules = {
+export interface GameRules {
     startingEco: number;
     startingMoney: number;
     timePerEcoTick: number;
